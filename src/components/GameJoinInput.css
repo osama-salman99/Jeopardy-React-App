@@ -1,0 +1,18 @@
+* {
+    overflow: hidden;
+}
+
+.Centered {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.Margin {
+    margin: 15%;
+}
+
+.Input {
+    width: fit-content;
+}

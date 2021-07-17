@@ -1,0 +1,24 @@
+:root {
+    --default_blue: #04009A;
+    --background_color: #77ACF1;
+}
+
+body {
+    background-color: var(--background_color);
+}
+
+.SignUp {
+    margin-top: 27.5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.Margin {
+    margin: 0.75%;
+}
+
+.Input {
+    width: fit-content;
+}

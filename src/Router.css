@@ -1,0 +1,15 @@
+:root {
+    --background_color: #77ACF1;
+}
+
+body {
+    background-color: var(--background_color);
+}
+
+.center {
+    margin-top: 50vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

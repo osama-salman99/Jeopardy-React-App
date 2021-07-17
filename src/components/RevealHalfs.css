@@ -1,0 +1,25 @@
+.Half {
+    margin-top: var(--banner_height);
+    width: 50vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: var(--bottoms_height);
+    text-align: center;
+    background-image: radial-gradient(var(--border_color), var(--half_color));
+}
+
+.RightHalf {
+    margin-left: 50vw;
+}
+
+.RevealImage {
+    display: block;
+    cursor: pointer;
+}
+
+.Inner {
+    display: none;
+}
