@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import RouterPage from "./RouterPage";
 import SignUp from "./SignUp";
 import Lobby from "./Lobby";
@@ -15,7 +15,6 @@ function App() {
             <Route exact path='/game' component={Game}/>
             <Route exact path='/game/host' component={Host}/>
             <Route exact path='/debug' component={Debug}/>
-            <Redirect from="/" to="/"/>
         </Router>
     );
 }
