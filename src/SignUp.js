@@ -9,6 +9,7 @@ import Recurring from "./components/Recurring";
 
 function SignUp() {
     const [isLoading, setLoading] = useState(true);
+    const recurring = new Recurring()
     const history = useHistory();
     const goTo = useCallback((path) => history.push('/' + path), [history]);
     const defaultUrl = 'http://' + window.location.hostname + ':8080';
@@ -19,11 +20,9 @@ function SignUp() {
     }
 
     useEffect(() => {
-        let rec = new Recurring()
-        rec.request('get',
+        recurring.request('get',
             defaultUrl + '/player-in-sign-up',
             {withCredentials: true},
-            null,
             (response) => {
                 let data = response.data
                 console.log(data)

@@ -1,7 +1,11 @@
 import axios from "axios";
 
 class Recurring {
-    request(method, url, config, data, success, error) {
+    request(method, url, config, success, error) {
+        this.requestWithData(method, url, config, null, success, error)
+    }
+
+    requestWithData(method, url, config, data, success, error) {
         this.axiosCall(method, url, config, data).then((response) => {
             success(response)
         }).catch((response) => {
