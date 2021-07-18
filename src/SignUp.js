@@ -3,9 +3,12 @@ import Break from './components/Break'
 import {ReactComponent as WelcomeImage} from './images/welcome.svg'
 import axios from "axios";
 import {useHistory} from "react-router-dom";
-import {useCallback} from "react";
+import {useCallback, useEffect, useState} from "react";
+import Loading from "./components/Loading";
+import Recurring from "./components/Recurring";
 
 function SignUp() {
+    const [isLoading, setLoading] = useState(true);
     const history = useHistory();
     const goTo = useCallback((path) => history.push('/' + path), [history]);
     const defaultUrl = 'http://' + window.location.hostname + ':8080';
@@ -15,22 +18,31 @@ function SignUp() {
         }
     }
 
-    axios.get(defaultUrl + '/player-in-sign-up', {
-        withCredentials: true
-    }).then((response) => {
-        let data = response.data
-        console.log(data)
-        if (!data) {
-            goTo('')
-        }
-    }).catch((error) => {
-        if (error.response) {
-            console.log(error)
-            let message = error.response.data.message
-            console.log(message)
-            alert(message)
-        }
-    })
+    useEffect(() => {
+        let rec = new Recurring()
+        rec.request('get',
+            defaultUrl + '/player-in-sign-up',
+            {withCredentials: true},
+            null,
+            (response) => {
+                let data = response.data
+                console.log(data)
+                if (data) {
+                    setLoading(false)
+                } else {
+                    goTo('')
+                }
+            },
+            (error) => {
+                if (error.response) {
+                    console.log(error)
+                    let message = error.response.data.message
+                    console.log(message)
+                    alert(message)
+                }
+            }
+        )
+    });
 
     function signUp() {
         console.log('Sign up clicked')
@@ -53,6 +65,12 @@ function SignUp() {
                 alert(message)
             }
         })
+    }
+
+    if (isLoading) {
+        return (
+            <Loading/>
+        )
     }
 
     return (

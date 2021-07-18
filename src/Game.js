@@ -24,8 +24,6 @@ function Game() {
         }
     })
 
-    console.log('hi')
-
     return (
         <div>
             Game

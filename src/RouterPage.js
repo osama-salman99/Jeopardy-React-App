@@ -1,7 +1,7 @@
-import './Router.css'
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import {useCallback} from "react";
+import Loading from "./components/Loading";
 
 function RouterPage() {
     const history = useHistory();
@@ -31,9 +31,7 @@ function RouterPage() {
         }
     })
     return (
-        <div className="d-flex justify-content-center">
-            <div className="spinner-grow text-light center" role="status"/>
-        </div>
+        <Loading/>
     );
 }
 
