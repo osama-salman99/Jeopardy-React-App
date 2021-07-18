@@ -45,7 +45,6 @@ function SignUp() {
     });
 
     function signUp() {
-        console.log('Sign up clicked')
         let nickname = document.getElementById('nicknameInput').value
         let formData = new FormData();
         formData.append('nickname', nickname);
