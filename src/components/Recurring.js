@@ -10,7 +10,7 @@ class Recurring {
             success(response)
         }).catch((response) => {
             error(response)
-            this.request(method, url, config, data, success, error)
+            this.requestWithData(method, url, config, data, success, error)
         })
     }
 

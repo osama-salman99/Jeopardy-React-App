@@ -20,7 +20,8 @@ function SignUp() {
     }
 
     useEffect(() => {
-        recurring.request('get',
+        recurring.request(
+            'get',
             defaultUrl + '/player-in-sign-up',
             {withCredentials: true},
             (response) => {

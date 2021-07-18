@@ -18,7 +18,8 @@ function Lobby() {
     const defaultUrl = 'http://' + window.location.hostname + ':8080';
 
     useEffect(() => {
-        recurring.request('get',
+        recurring.request(
+            'get',
             defaultUrl + '/player-in-lobby',
             {withCredentials: true},
             (response) => {
