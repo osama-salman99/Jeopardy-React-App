@@ -1,7 +1,7 @@
 function Debug() {
-    return (
-        <div/>
-    )
+	return (
+		<div/>
+	)
 }
 
 export default Debug

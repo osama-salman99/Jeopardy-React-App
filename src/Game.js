@@ -1,72 +1,75 @@
+import {useCallback, useEffect, useMemo, useState} from "react";
 import {useHistory} from "react-router-dom";
-import {useCallback, useEffect, useState} from "react";
-import Recurring from "./components/Recurring";
 import Loading from "./components/Loading";
+import Recurring from "./components/Recurring";
 
 function Game() {
-    const [isLoading, setLoading] = useState(true);
-    const recurring = new Recurring()
-    const history = useHistory();
-    const goTo = useCallback((path) => history.push('/' + path), [history]);
-    const defaultUrl = 'http://' + window.location.hostname + ':8080';
-    const gameUrl = 'http://' + window.location.hostname + ':8080/game';
+	const [isLoading, setLoading] = useState(true);
+	const history = useHistory();
+	const goTo = useCallback((path) => history.push('/' + path), [history]);
+	const defaultUrl = 'http://' + window.location.hostname + ':8080';
+	const gameUrl = 'http://' + window.location.hostname + ':8080/game';
+	const recurring = useMemo(() => {
+		return new Recurring()
+	}, [])
 
-    useEffect(() => {
-        recurring.request(
-            'get',
-            defaultUrl + '/player-in-game',
-            {withCredentials: true},
-            (response) => {
-                let data = response.data
-                console.log(data)
-                if (data) {
-                    setLoading(false)
-                } else {
-                    goTo('')
-                }
-            },
-            (error) => {
-                if (error.response) {
-                    console.log(error)
-                    let message = error.response.data.message
-                    console.log(message)
-                    alert(message)
-                }
-            }
-        )
-    })
 
-    if (isLoading) {
-        return (
-            <Loading/>
-        )
-    }
+	useEffect(() => {
+		recurring.request(
+			'get',
+			defaultUrl + '/player-in-game',
+			{withCredentials: true},
+			(response) => {
+				let data = response.data
+				console.log(data)
+				if (data) {
+					setLoading(false)
+				} else {
+					goTo('')
+				}
+			},
+			(error) => {
+				if (error.response) {
+					console.log(error)
+					let message = error.response.data.message
+					console.log(message)
+					alert(message)
+				}
+			}
+		)
+	}, [defaultUrl, goTo, recurring])
 
-    recurring.request(
-        'get',
-        gameUrl + '/is-host',
-        {withCredentials: true},
-        (response) => {
-            let data = response.data
-            if (data) {
-                goTo('game/host');
-            }
-        },
-        (error) => {
-            if (error.response) {
-                console.log(error)
-                let message = error.response.data.message
-                console.log(message)
-                alert(message)
-            }
-        }
-    )
+	if (isLoading) {
+		return (
+			<Loading/>
+		)
+	}
 
-    return (
-        <div>
-            Game
-        </div>
-    )
+	recurring.request(
+		'get',
+		gameUrl + '/host/is-host',
+		{withCredentials: true},
+		(response) => {
+			let data = response.data
+			if (data) {
+				goTo('game/host');
+			}
+		},
+		(error) => {
+			if (error.response) {
+				console.log(error)
+				let message = error.response.data.message
+				console.log(message)
+				alert(message)
+			}
+		}
+	)
+
+	return (
+		<div>
+			Game
+		</div>
+	)
 }
 
 export default Game

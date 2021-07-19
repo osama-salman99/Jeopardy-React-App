@@ -1,34 +1,34 @@
 :root {
-    --banner_height: 15vh;
-    --bottoms_height: calc(100vh - var(--banner_height));
-    --half_color: #77ACF1;
-    --border_color: #0A81AB;
-    --banner_color: #04009A;
+	--banner_height: 15vh;
+	--bottoms_height: calc(100vh - var(--banner_height));
+	--half_color: #77ACF1;
+	--border_color: #0A81AB;
+	--banner_color: #04009A;
 }
 
 * {
-    overflow: auto;
+	overflow: auto;
 }
 
 body {
-    margin: 0;
+	margin: 0;
 }
 
 .Banner {
-    position: absolute;
-    height: var(--banner_height);
-    width: 100vw;
-    text-align: center;
-    background-image: radial-gradient(var(--banner_color), var(--border_color));
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+	position: absolute;
+	height: var(--banner_height);
+	width: 100vw;
+	text-align: center;
+	background-image: radial-gradient(var(--banner_color), var(--border_color));
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 .LogOutButton {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    margin: 0.5%;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	margin: 0.5%;
 }
