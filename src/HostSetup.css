@@ -1,0 +1,12 @@
+.Host {
+	margin-top: 30vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.InfoParagraph {
+	font-size: x-large;
+	font-family: Droid, serif;
+}

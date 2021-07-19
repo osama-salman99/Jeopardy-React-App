@@ -1,3 +1,4 @@
+import './Dropzone.css'
 import React, {useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
 
@@ -10,13 +11,9 @@ function Dropzone({onDrop, dropStatement}) {
 	const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop: callback})
 
 	return (
-		<div {...getRootProps()}>
-			<input {...getInputProps()} />
-			{
-				isDragActive ?
-					<p>Drop the files here ...</p> :
-					<p>{dropStatement}</p>
-			}
+		<div className='DropZone' {...getRootProps()} style={{color: isDragActive ? 'green' : ''}}>
+			< input {...getInputProps()} />
+			<p>{dropStatement}</p>
 		</div>
 	)
 }

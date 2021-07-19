@@ -1,0 +1,14 @@
+.DropZone {
+	border-style: dashed;
+	height: 20vh;
+	width: 30vw;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.DropZone:hover {
+	color: yellow;
+	cursor: pointer;
+}

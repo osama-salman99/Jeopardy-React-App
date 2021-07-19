@@ -16,7 +16,6 @@ function Lobby() {
 	const history = useHistory();
 	const goTo = useCallback((path) => history.push('/' + path), [history]);
 	const defaultUrl = 'http://' + window.location.hostname + ':8080';
-
 	useEffect(() => {
 		recurring.request(
 			'get',

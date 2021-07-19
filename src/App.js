@@ -6,6 +6,7 @@ import Game from "./Game";
 import Host from "./Host";
 import Debug from "./Debug";
 import InvalidRoute from "./InvalidRoute";
+import HostSetup from "./HostSetup";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 			<Route exact path='/lobby' component={Lobby}/>
 			<Route exact path='/game' component={Game}/>
 			<Route exact path='/game/host' component={Host}/>
+			<Route exact path='/game/host/setup' component={HostSetup}/>
 			<Route exact path='/debug' component={Debug}/>
 			<Route path='/!(sign-up|lobby|game|game/host|debug)' component={InvalidRoute}/>
 		</Router>
