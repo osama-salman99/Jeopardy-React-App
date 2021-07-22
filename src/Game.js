@@ -7,12 +7,11 @@ function Game() {
 	const [isLoading, setLoading] = useState(true);
 	const history = useHistory();
 	const goTo = useCallback((path) => history.push('/' + path), [history]);
-	const defaultUrl = 'http://' + window.location.hostname + ':8080';
-	const gameUrl = 'http://' + window.location.hostname + ':8080/game';
+	const defaultUrl = 'https://' + window.location.hostname + ':8433';
+	const gameUrl = 'https://' + window.location.hostname + ':8433/game';
 	const recurring = useMemo(() => {
 		return new Recurring()
 	}, [])
-
 
 	useEffect(() => {
 		recurring.request(

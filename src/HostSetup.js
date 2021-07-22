@@ -12,7 +12,7 @@ function HostSetup() {
 	const [isLoading, setLoading] = useState(false);
 	const history = useHistory();
 	const jumpBackTo = useCallback((path) => history.replace('/' + path), [history]);
-	const gameUrl = 'http://' + window.location.hostname + ':8080/game';
+	const gameUrl = 'https://' + window.location.hostname + ':8433/game';
 	let recurring = useMemo(() => {
 		return new Recurring()
 	}, [])

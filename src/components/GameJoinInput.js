@@ -6,7 +6,7 @@ import axios from "axios";
 function GameJoinInput({ButtonText, operation}) {
 	const history = useHistory();
 	const goTo = useCallback((path) => history.push('/' + path), [history]);
-	const defaultUrl = 'http://' + window.location.hostname + ':8080';
+	const defaultUrl = 'https://' + window.location.hostname + ':8433';
 
 	function invoke() {
 		let gameId = document.getElementById('id-' + operation).value
