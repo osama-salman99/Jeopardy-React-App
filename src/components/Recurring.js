@@ -1,16 +1,25 @@
 import axios from "axios";
 
 class Recurring {
-	request(method, url, config, success, error) {
-		this.requestWithData(method, url, config, null, success, error)
+	request(method, url, config, success, oncatch) {
+		this.requestWithData(method, url, config, null, success, oncatch)
 	}
 
-	requestWithData(method, url, config, data, success, error) {
+	requestWithData(method, url, config, data, onsuccess, oncatch) {
+		this.execute(method, url, config, data, onsuccess, oncatch, 1)
+	}
+
+	execute(method, url, config, data, onsuccess, oncatch, waitTime) {
 		this.axiosCall(method, url, config, data).then((response) => {
-			success(response)
-		}).catch((response) => {
-			error(response)
-			this.requestWithData(method, url, config, data, success, error)
+			onsuccess(response)
+		}).catch((error) => {
+			oncatch(error)
+			if (!error.response && error.request) {
+				// The request was made but no response was received
+				setTimeout(() => {
+					this.execute(method, url, config, data, onsuccess, oncatch, waitTime * 2)
+				}, waitTime)
+			}
 		})
 	}
 
