@@ -2,36 +2,17 @@ import SockJS from "sockjs-client";
 import Stomp from "webstomp-client";
 
 class WebSocket {
-	constructor(topic, destination, callbackMethod) {
-		this.topic = topic
-		this.destination = destination
-		this.callbackMethod = callbackMethod
-		this.connect()
+	constructor(connectCallback, errorCallback) {
+		this.connect(connectCallback, errorCallback)
 	}
 
-	send = (message) => {
-		console.log('send executed')
-		if (this.stompClient && this.stompClient.connected) {
-			this.stompClient.send('/app/' + this.destination, JSON.stringify(message))
-		} else {
-			this.connect()
-		}
-	}
-
-	connect = () => {
+	connect = (connectCallback, errorCallback) => {
 		this.socket = new SockJS('https://' + window.location.hostname + ':8433/socket');
 		this.stompClient = Stomp.over(this.socket);
 		this.stompClient.connect(
 			{},
-			() => {
-				this.stompClient.subscribe('/topics/' + this.topic, (response) => {
-					this.callbackMethod(response)
-				});
-			},
-			error => {
-				console.log('Error:')
-				console.log(error);
-			}
+			connectCallback,
+			errorCallback
 		);
 	}
 
@@ -39,6 +20,16 @@ class WebSocket {
 		if (this.stompClient) {
 			this.stompClient.disconnect();
 		}
+	}
+
+	subscribe = (destination, callback) => {
+		this.stompClient.subscribe(destination, (message) => {
+			callback(message)
+		});
+	}
+
+	send = (destination, message) => {
+		this.stompClient.send(destination, message)
 	}
 }
 

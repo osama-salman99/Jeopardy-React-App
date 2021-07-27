@@ -1,17 +1,19 @@
 import WebSocket from "./components/WebSocket";
 
 function Debug() {
-	let websocket = new WebSocket('test', 'sub', callback);
-	console.log('sending')
-
-	function callback(message) {
-		console.log('Received: ' + message)
-	}
+	let websocket = new WebSocket(() => {
+			websocket.subscribe('/user/queue/game/update', (message) => {
+				console.log('Got message: ' + message)
+			})
+		},
+		(error) => {
+			console.log(error)
+		});
 
 	function perform() {
 		console.log('perform executed')
 		if (websocket) {
-			websocket.send('hhhh');
+			websocket.send('/app/game/event', 'boi');
 		}
 	}
 
