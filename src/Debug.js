@@ -11,7 +11,6 @@ function Debug() {
 		});
 
 	function perform() {
-		console.log('perform executed')
 		if (websocket) {
 			websocket.send('/app/game/event', 'boi');
 		}
